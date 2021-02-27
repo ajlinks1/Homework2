@@ -21,6 +21,7 @@ module.exports = Mongoose.model('User', new Mongoose.Schema({
     min: 0,
   },
   address: { type: String, required: false },
+  // validate
   phone: { type: String, required: false },
 
 }, {
