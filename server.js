@@ -2,9 +2,7 @@ const Express = require('express');
 const BodyParser = require('body-parser');
 const Mongoose = require('mongoose');
 
-const Product = require('./models/product');
-const User = require('./models/user');
-const Service = require('./service/database');
+const Service = require('./database');
 
 const app = Express();
 
@@ -19,6 +17,7 @@ app.get('/products/:sku', async (request, response) => {
 });
 
 app.post('/products', async (request, response) => {
+  console.log(request);
   await Service.postProducts(request, response);
 });
 
