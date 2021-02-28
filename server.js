@@ -17,7 +17,7 @@ app.get('/products/:sku', async (request, response) => {
 });
 
 app.post('/products', async (request, response) => {
-  console.log(request);
+
   await Service.postProducts(request, response);
 });
 
