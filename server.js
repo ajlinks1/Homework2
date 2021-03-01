@@ -2,7 +2,7 @@ const Express = require('express');
 const BodyParser = require('body-parser');
 const Mongoose = require('mongoose');
 
-const Service = require('./database');
+const Service = require('./service/database');
 
 const app = Express();
 
@@ -17,7 +17,6 @@ app.get('/products/:sku', async (request, response) => {
 });
 
 app.post('/products', async (request, response) => {
-
   await Service.postProducts(request, response);
 });
 

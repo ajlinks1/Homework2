@@ -1,7 +1,7 @@
 const Express = require('express');
 const BodyParser = require('body-parser');
 
-const Product = require('./models/product');
+const Product = require('../models/product');
 
 const app = Express();
 
