@@ -37,6 +37,6 @@ module.exports = Mongoose.model('User', new Mongoose.Schema({
 }, {
   toJSON: {
     getters: true,
-    virtuals: false
+    virtuals: false,
   },
 }));

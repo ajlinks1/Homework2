@@ -9,8 +9,7 @@ exports.putUsers = async (ssn, user) => User.findOneAndReplace({ ssn }, user,
   { upsert: true });
 exports.patchUsers = async (ssn, user) => User.findOneAndUpdate(
   { ssn }, user,
-    {
-        new: true,
-    },
+  {
+    new: true,
+  },
 ).select('-_id -__v');
-
