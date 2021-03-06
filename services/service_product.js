@@ -1,4 +1,4 @@
-const Product = require('./models/product');
+const Product = require('../models/product');
 
 exports.getProducts = async (query) => Product.find(query).select('-_id -__v');
 exports.getProductsSku = async (sku) => Product.findOne({ sku }).select('-_id -__v');
