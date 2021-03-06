@@ -2,47 +2,28 @@ const Express = require('express');
 const BodyParser = require('body-parser');
 const Mongoose = require('mongoose');
 
-const Service = require('./controllers/controller_products');
-
 const app = Express();
 
 app.use(BodyParser.json());
 
-app.get('/products', async (request, response) => {
-  await Service.getProducts(request, response);
-});
+const productRoute = require('./routes/route_product');
+const userRoute = require('./routes/route_user');
 
-app.get('/products/:sku', async (request, response) => {
-  await Service.getProductsSku(request, response);
-});
-
-app.post('/products', async (request, response) => {
-  await Service.postProducts(request, response);
-});
-
-app.delete('/products', async (request, response) => {
-  await Service.deleteProducts(request, response);
-});
-
-app.delete('/products/:sku', async (request, response) => {
-  await Service.deleteProductsSku(request, response);
-});
-
-app.put('/products/:sku', async (request, response) => {
-  await Service.putProducts(request, response);
-});
-
-app.patch('/products/:sku', async (request, response) => {
-  await Service.patchProducts(request, response);
-});
+app.use('/', productRoute);
+app.use('/', userRoute);
 
 (async () => {
-  const { ADDRESS } = process.env;
-  await Mongoose.connect(ADDRESS, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-    useCreateIndex: true,
-  });
-  app.listen(8000);
+  try {
+    const { ADDRESS } = process.env;
+    await Mongoose.connect(ADDRESS, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false,
+      useCreateIndex: true,
+
+    });
+    app.listen(8000);
+  } catch (e) {
+    console.log(new Error('Database Connection Failed'));
+  }
 })();
