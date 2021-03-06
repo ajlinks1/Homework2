@@ -20,13 +20,20 @@ module.exports = Mongoose.model('User', new Mongoose.Schema({
     required: true,
     min: 0,
   },
-  address: { type: String, required: false },
-  // validate
+  address: {
+    type: String,
+    required: false,
+  },
   phone: { type: String, required: false },
 
 }, {
   toJSON: {
     getters: true,
     virtuals: false,
+    validate: {
+      validator(value) {
+        return /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/.test(value);
+      },
+    },
   },
 }));
