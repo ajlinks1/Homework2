@@ -24,16 +24,19 @@ module.exports = Mongoose.model('User', new Mongoose.Schema({
     type: String,
     required: false,
   },
-  phone: { type: String, required: false },
-
-}, {
-  toJSON: {
-    getters: true,
-    virtuals: false,
+  phone: {
+    type: String,
+    required: false,
     validate: {
       validator(value) {
         return /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/.test(value);
       },
     },
+  },
+
+}, {
+  toJSON: {
+    getters: true,
+    virtuals: false
   },
 }));
